@@ -12,7 +12,6 @@ export const fetchCharactersAsync = createAsyncThunk(
                     page
                 }
             })
-            console.log('res: ', res)
             return res;
         } catch (err) {
             console.log('err')

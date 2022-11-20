@@ -3,6 +3,10 @@ import { gql } from "@apollo/client";
 export const fetchCharacters = gql`
   query getCharacters($page: Int!) {
     characters(page: $page) {
+      info {
+        count
+        pages
+      }
       results {
         name
         status
