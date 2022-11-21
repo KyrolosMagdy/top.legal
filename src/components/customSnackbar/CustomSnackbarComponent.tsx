@@ -25,11 +25,14 @@ export const CustomSnackbarComponent = ({
 }: SnackbarProps): React.ReactElement => {
   return (
     <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-      <Alert onClose={handleClose} severity={severity} sx={{ padding: '0.3rem', display: "flex", alignItems: 'center' }}>
-        <Typography variant="h6" sx={{ padding: '0 1rem'}}>
-           {message} 
+      <Alert
+        onClose={handleClose}
+        severity={severity}
+        sx={{ padding: "0.3rem", display: "flex", alignItems: "center" }}
+      >
+        <Typography variant="h6" sx={{ padding: "0 1rem" }}>
+          {message}
         </Typography>
-        
       </Alert>
     </Snackbar>
   );

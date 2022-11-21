@@ -25,6 +25,7 @@ export const CharacterModal = ({
     <Modal
       open={open}
       onClose={handleClose}
+      data-testid="modal-wrapper"
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       disableEnforceFocus

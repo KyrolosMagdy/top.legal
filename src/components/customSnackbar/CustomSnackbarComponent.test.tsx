@@ -1,32 +1,32 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import React from "react";
+import { render } from "@testing-library/react";
 
-import { CustomSnackbarComponent } from './CustomSnackbarComponent';
-import { Character } from '../../types/Character';
+import { CustomSnackbarComponent } from "./CustomSnackbarComponent";
 
-const character: Character = {
-  image: '',
-  location: {
-    id: 1,
-    name: 'location'
-  },
-  origin: {
-    id: 1,
-    name: 'lol'
-  },
-  status: 'Dead',
-  gender: 'Male',
-  species: 'Human',
-  id: 0,
-  name: ''
-}
+describe("snackbar functionality", () => {
+  test("expecting the snackbar to be closed", () => {
+    const { getByText } = render(
+      <CustomSnackbarComponent
+        message="Error"
+        open={true}
+        handleClose={() => console.log("close")}
+      />
+    );
 
-test('renders learn react link', () => {
-  const { asFragment, getByText } = render(
-    <CustomSnackbarComponent message='Error' open={true} handleClose={() => console.log('close')} />
-  );
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(getByText("Error")).toBeInTheDocument();
+  });
 
-  expect(asFragment()).toMatchInlineSnapshot(`
+  test("expecting Snackbar to be fixed", () => {
+    const { asFragment } = render(
+      <CustomSnackbarComponent
+        message="Error"
+        open={true}
+        handleClose={() => console.log("close")}
+      />
+    );
+
+    expect(asFragment()).toMatchInlineSnapshot(`
 <DocumentFragment>
   <div
     class="MuiSnackbar-root MuiSnackbar-anchorOriginBottomLeft css-cpgvjg-MuiSnackbar-root"
@@ -92,4 +92,5 @@ test('renders learn react link', () => {
   </div>
 </DocumentFragment>
 `);
+  });
 });

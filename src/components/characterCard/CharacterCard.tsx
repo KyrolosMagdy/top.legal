@@ -12,9 +12,16 @@ export interface CardProps {
   onCardClick: () => void;
 }
 
-export const CharacterCard = ({ character, onCardClick }: CardProps): React.ReactElement => {
+export const CharacterCard = ({
+  character,
+  onCardClick,
+}: CardProps): React.ReactElement => {
   return (
-    <Card sx={{ maxWidth: 320, position:'relative', cursor: 'pointer' }} onClick={onCardClick}>
+    <Card
+      sx={{ maxWidth: 320, position: "relative", cursor: "pointer" }}
+      data-testid="card-wrapper"
+      onClick={onCardClick}
+    >
       <CardMedia
         component="img"
         height="250"

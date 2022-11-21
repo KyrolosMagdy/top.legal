@@ -1,35 +1,51 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import React from "react";
+import { render, screen } from "@testing-library/react";
 
-import { CharacterCard } from './CharacterCard'
-import { Character } from '../../types/Character';
+import { CharacterCard } from "./CharacterCard";
+import { Character } from "../../types/Character";
+import userEvent from "@testing-library/user-event";
 
 const character: Character = {
-  image: '',
+  image: "",
   location: {
     id: 1,
-    name: 'location'
+    name: "location",
   },
   origin: {
     id: 1,
-    name: 'lol'
+    name: "lol",
   },
-  status: 'Dead',
-  gender: 'Male',
-  species: 'Human',
+  status: "Dead",
+  gender: "Male",
+  species: "Human",
   id: 0,
-  name: ''
-}
+  name: "",
+};
 
-test('render character card correctly', () => {
-  const { asFragment, getByText } = render(
-    <CharacterCard character={character} onCardClick={() => console.log('cliekc')} />
+test("user can click on the card", async () => {
+  const clickFun = jest.fn();
+  render(
+    <CharacterCard character={character} onCardClick={clickFun} />
+  );
+  expect.assertions(1)
+  const cardWrapper = screen.getByTestId("card-wrapper");
+  await userEvent.click(cardWrapper);
+  expect(clickFun).toBeCalled();
+});
+
+test("render character card correctly", () => {
+  const { asFragment } = render(
+    <CharacterCard
+      character={character}
+      onCardClick={() => console.log("cliekc")}
+    />
   );
 
   expect(asFragment()).toMatchInlineSnapshot(`
 <DocumentFragment>
   <div
     class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-b9w45m-MuiPaper-root-MuiCard-root"
+    data-testid="card-wrapper"
   >
     <img
       alt="green iguana"
