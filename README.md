@@ -1,10 +1,12 @@
-# Getting Started with Create React App
+# How to run the App Locally
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
 
-## Available Scripts
+## After cloning, create a .env file in the root directory
 
-In the project directory, you can run:
+init please add this variable:
+
+`REACT_APP_BACKEND_URI = please_add_your_graphQL_uri`
 
 ### `npm start`
 
