@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const fetchCharacters = gql`
-  query getCharacters($page: Int!) {
-    characters(page: $page) {
+  query getCharacters($page: Int!, $filter: FilterCharacter) {
+    characters(page: $page, filter: $filter) {
       info {
         count
         pages
@@ -11,7 +11,9 @@ export const fetchCharacters = gql`
         name
         status
         image
+        gender
         id
+        species
         location {
           name
           id

@@ -8,4 +8,6 @@ export interface Character extends Record {
     location: Record;
     origin: Record;
     status: string;
+    gender: string;
+    species: string;
 }

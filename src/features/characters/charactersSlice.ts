@@ -38,18 +38,18 @@ export const charactersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCharactersAsync.pending, (state) => {
-        state.status = 'loading'
-    })
+      state.status = "loading";
+    });
     builder.addCase(fetchCharactersAsync.fulfilled, (state, action) => {
-        state.status = 'idle'
-        state.value = action.payload?.data?.characters?.results?? []
-        state.totalCount = action.payload?.data?.characters?.info?.count
-        state.totalPages = action.payload?.data?.characters?.info?.pages
-    })
+      state.status = "idle";
+      state.value = action.payload?.data?.characters?.results ?? [];
+      state.totalCount = action.payload?.data?.characters?.info?.count;
+      state.totalPages = action.payload?.data?.characters?.info?.pages;
+    });
     builder.addCase(fetchCharactersAsync.rejected, (state) => {
-        state.errorMessage = 'Error, Please try again later'
-    })
-  }
+      state.errorMessage = "Error, Please try again later";
+    });
+  },
 });
 
 export const {
@@ -57,8 +57,12 @@ export const {
   handleHideCharactersSuccessMessage,
 } = charactersSlice.actions;
 
-export const selectCharacters = (state: RootState) => state.characters.value
-export const selectCharactersStatus = ( state: RootState) => state.characters.status
-export const selectCharacterTotalPages = (state: RootState) => state.characters.totalPages
+export const selectCharacters = (state: RootState) => state.characters.value;
+export const selectCharactersStatus = (state: RootState) =>
+  state.characters.status;
+export const selectCharacterTotalPages = (state: RootState) =>
+  state.characters.totalPages;
+export const selectCharacterErrorMessage = (state: RootState) =>
+  state.characters.errorMessage;
 
 export default charactersSlice.reducer;

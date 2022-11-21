@@ -6,3 +6,8 @@ export const StyledCardsWrapper = styled('div')(({ theme }) => ({
     gridGap: theme.spacing(3),
     justifyContent: 'center',
 }))
+
+export const StyledMainPageWrapper = styled('div')(({ theme }) => ({
+    display: 'grid',
+    gridTemplateColumns: '20% 80%'
+}))

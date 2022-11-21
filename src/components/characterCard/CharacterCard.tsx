@@ -9,11 +9,12 @@ import { StatusBar } from "../StatusBar/StatusBar";
 
 export interface CardProps {
   character: Character;
+  onCardClick: () => void;
 }
 
-export const CharacterCard = ({ character }: CardProps): React.ReactElement => {
+export const CharacterCard = ({ character, onCardClick }: CardProps): React.ReactElement => {
   return (
-    <Card sx={{ maxWidth: 320, position:'relative' }}>
+    <Card sx={{ maxWidth: 320, position:'relative', cursor: 'pointer' }} onClick={onCardClick}>
       <CardMedia
         component="img"
         height="250"
