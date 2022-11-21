@@ -10,7 +10,10 @@ import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
 
 import { Filtiration } from "../../types/Filteration";
-import { StyledSearchComponentWrapper } from "./StyledSearchBar";
+import {
+  StyledButtonsWrapper,
+  StyledSearchComponentWrapper,
+} from "./StyledSearchBar";
 import { Container } from "@mui/material";
 
 export interface SearchByNameProps {
@@ -19,6 +22,7 @@ export interface SearchByNameProps {
   value: string;
   onValueChange: (value: string) => void;
   handleSearch: () => void;
+  handleClearFilters: () => void;
 }
 
 export const SearchByName = ({
@@ -27,6 +31,7 @@ export const SearchByName = ({
   value,
   onValueChange,
   handleSearch,
+  handleClearFilters,
 }: SearchByNameProps): React.ReactElement => {
   const keys = ["name", "status", "species", "type", "gender"];
   return (
@@ -42,7 +47,7 @@ export const SearchByName = ({
             onChange={(e) => {
               onFilterKeyChange(e.target.value as keyof Filtiration);
             }}
-            sx={{ backgroundColor: "white" }}
+            sx={{ backgroundColor: "white", height: "100%" }}
           >
             {keys.map((key) => (
               <MenuItem key={key} value={key}>
@@ -57,7 +62,7 @@ export const SearchByName = ({
             p: "2px 4px",
             display: "flex",
             alignItems: "center",
-            width: '100%',
+            width: "100%",
             [theme.breakpoints.down("md")]: {
               width: "98%",
             },
@@ -83,9 +88,14 @@ export const SearchByName = ({
             <SearchIcon />
           </IconButton>
         </Paper>
-        <Button variant="contained" onClick={handleSearch}>
-          Search
-        </Button>
+        <StyledButtonsWrapper>
+          <Button variant="contained" onClick={handleSearch}>
+            Search
+          </Button>
+          <Button variant="text" onClick={handleClearFilters}>
+            Clear filters
+          </Button>
+        </StyledButtonsWrapper>
       </StyledSearchComponentWrapper>
     </Container>
   );

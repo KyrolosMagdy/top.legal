@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { client } from "../../index";
+import { client } from "../../client";
 import { Filtiration } from "../../types/Filteration";
 import { fetchCharacters } from "./charactersApi";
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Container, Typography } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -34,13 +34,17 @@ export const MainPage = (): React.ReactElement => {
   const charactersErrorMessage = useAppSelector(selectCharacterErrorMessage);
   const totalPages = useAppSelector(selectCharacterTotalPages);
 
-  useEffect(() => {
+  const fetchAllCharacters = useCallback(() => {
     dispatch(
       fetchCharactersAsync({
         page,
       })
     );
-  }, [dispatch, page]);
+  }, [dispatch, page])
+
+  useEffect(() => {
+    fetchAllCharacters()
+  }, [fetchAllCharacters]);
 
   const handleSearchButton = () => {
     if (value.length > 0) {
@@ -54,6 +58,12 @@ export const MainPage = (): React.ReactElement => {
       );
     }
   };
+
+  const handleClearFilters = () => {
+    setValue('');
+    setCurrentKey('name')
+    fetchAllCharacters();
+  }
 
   return (
     <Container maxWidth="xl">
@@ -78,6 +88,7 @@ export const MainPage = (): React.ReactElement => {
         value={value}
         onValueChange={(e) => setValue(e)}
         handleSearch={handleSearchButton}
+        handleClearFilters={handleClearFilters}
       />
       {characters?.length === 0 && (
         <Typography variant="h4" textAlign="center">
